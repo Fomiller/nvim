@@ -1,4 +1,18 @@
+utils = require('fomiller.functions.utils')
+-- commands = require('fomiller.functions.commands')
+
 vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
+
+vim.keymap.set("n", "<leader>w", "<cmd>w!<CR>")
+vim.keymap.set("n", "<leader>q", "<cmd>lua utils.Smart_quit()<CR>")
+vim.keymap.set("n", "<leader>c", "<cmd>BufDel<CR>")
+
+-- bufferline mappings
+vim.keymap.set("n", "H","<cmd>BufferLineCyclePrev<CR>")
+vim.keymap.set("n", "L","<cmd>BufferLineCycleNext<CR>")
+vim.keymap.set("n", "bd","<cmd>BufferLineSortByDirectory<CR>", {silent = true})
+vim.keymap.set("n", "be","<cmd>BufferLineSortByExtension<CR>", {silent = true})
+vim.keymap.set("n", "bp","<cmd>BufferLinePick<CR>", {silent = true})
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -13,7 +27,7 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- next greatest remap ever : asbjornHaland
-vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 -- vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
@@ -22,7 +36,8 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
 vim.keymap.set("n", "Q", "<nop>")
-vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+
+-- vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
@@ -35,8 +50,15 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 -- automatically set file to executable
 -- vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
--- diagnostic; floating diagonostic, goto functions seem slow
-vim.keymap.set("n", "<leader>d", ":lua vim.diagnostic.open_fat()<CR>", { silent = true })
-vim.keymap.set("n", "<leader>n", ":lua vim.diagnostic.goto_next()<CR>", { silent = true })
-vim.keymap.set("n", "<leader>p", ":lua vim.diagnostic.goto_prev()<CR>", { silent = true })
+-- -- windows navigation
+vim.keymap.set("n", "<C-h>", "<C-w>h")
+vim.keymap.set("n", "<C-j>", "<C-w>j")
+vim.keymap.set("n", "<C-k>", "<C-w>k")
+vim.keymap.set("n", "<C-l>", "<C-w>l")
+vim.keymap.set("n", "<C-Up>", ":resize -2<CR>")
+vim.keymap.set("n", "<C-Down>", ":resize +2<CR>")
+vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>")
+vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>")
 
+vim.keymap.set("n", "<leader>/", "<Plug>(comment_toggle_linewise_current)")
+vim.keymap.set("v", "<leader>/", "<Plug>(comment_toggle_linewise_visual)")

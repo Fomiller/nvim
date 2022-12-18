@@ -1,20 +1,22 @@
-utils = require("fomiller.functions.utils")
-
 local M = {}
 
-require("bufferline").setup({
-    options = {
-        close_command = function (bufnr)
-           M.buf_kill("bd", bufnr, false)
-        end
-}})
+function M.Smart_quit()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local modified = vim.api.nvim_buf_get_option(bufnr, "modified")
+  if modified then
+    vim.ui.input({
+      prompt = "You have unsaved changes. Quit anyway? (y/n) ",
+    }, function(input)
+      if input == "y" then
+        vim.cmd "q!"
+      end
+    end)
+  else
+    vim.cmd "q!"
+  end
+end
 
--- Common kill function for bdelete and bwipeout
--- credits: based on bbye and nvim-bufdel
----@param kill_command? string defaults to "bd"
----@param bufnr? number defaults to the current buffer
----@param force? boolean defaults to false
-function M.buf_kill(kill_command, bufnr, force)
+function M.Buffer_kill(kill_command, bufnr, force)
   kill_command = kill_command or "bd"
 
   local bo = vim.bo
@@ -39,9 +41,9 @@ function M.buf_kill(kill_command, bufnr, force)
       vim.ui.input({
         prompt = string.format([[%s. Close it anyway? [y]es or [n]o (default: no): ]], warning),
       }, function(choice)
-        if choice ~= nil and choice:match "ye?s?" then M.buf_kill(kill_command, bufnr, true) end
+        if choice:match "ye?s?" then force = true end
       end)
-      return
+      if not force then return end
     end
   end
 
@@ -65,7 +67,7 @@ function M.buf_kill(kill_command, bufnr, force)
   if #buffers > 1 and #windows > 0 then
     for i, v in ipairs(buffers) do
       if v == bufnr then
-        local prev_buf_idx = i == 1 and #buffers or (i - 1)
+        local prev_buf_idx = i == 1 and (#buffers - 1) or (i - 1)
         local prev_buffer = buffers[prev_buf_idx]
         for _, win in ipairs(windows) do
           api.nvim_win_set_buf(win, prev_buffer)
@@ -80,3 +82,5 @@ function M.buf_kill(kill_command, bufnr, force)
     vim.cmd(string.format("%s %d", kill_command, bufnr))
   end
 end
+
+return M
