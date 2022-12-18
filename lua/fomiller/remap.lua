@@ -16,7 +16,7 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
-vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
+-- vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
 
 -- This is going to get me cancelled
 vim.keymap.set("i", "<C-c>", "<Esc>")
@@ -31,5 +31,12 @@ vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+
+-- automatically set file to executable
+-- vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+
+-- diagnostic; floating diagonostic, goto functions seem slow
+vim.keymap.set("n", "<leader>d", ":lua vim.diagnostic.open_fat()<CR>", { silent = true })
+vim.keymap.set("n", "<leader>n", ":lua vim.diagnostic.goto_next()<CR>", { silent = true })
+vim.keymap.set("n", "<leader>p", ":lua vim.diagnostic.goto_prev()<CR>", { silent = true })
 

@@ -1,5 +1,3 @@
-
-
 -- Only required if you have packer configured as `opt`
 vim.cmd.packadd('packer.nvim')
 
@@ -20,6 +18,7 @@ return require('packer').startup(function(use)
 		-- vim.cmd('colorscheme rose-pine')
 	 --  end
   -- })
+
   use({
 	  'folke/tokyonight.nvim',
 	  as = 'tokyonight',
@@ -27,8 +26,8 @@ return require('packer').startup(function(use)
 		vim.cmd('colorscheme tokyonight')
 	  end
   })
-  
-  
+
+
   use {
 	  "max397574/better-escape.nvim",
 	  config = function()
@@ -82,7 +81,13 @@ return require('packer').startup(function(use)
   use("p00f/nvim-ts-rainbow")
   use('folke/lsp-colors.nvim')
 -- install without yarn or npm
-  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
+  use({ "iamcco/markdown-preview.nvim",
+    run = "cd app && npm install",
+    setup = function()
+        vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
+  })
 
   use("tpope/vim-surround")
   use("tpope/vim-repeat")
@@ -90,8 +95,9 @@ return require('packer').startup(function(use)
       'nvim-lualine/lualine.nvim',
       requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
-  -- using packer.nvim
+
   use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
+
   -- Lua
   use {
       "folke/trouble.nvim",
