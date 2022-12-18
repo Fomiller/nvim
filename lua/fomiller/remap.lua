@@ -1,9 +1,18 @@
 utils = require('fomiller.functions.utils')
+-- commands = require('fomiller.functions.commands')
 
 vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
 
 vim.keymap.set("n", "<leader>w", "<cmd>w!<CR>")
 vim.keymap.set("n", "<leader>q", "<cmd>lua utils.Smart_quit()<CR>")
+vim.keymap.set("n", "<leader>c", "<cmd>BufDel<CR>")
+
+-- bufferline mappings
+vim.keymap.set("n", "H","<cmd>BufferLineCyclePrev<CR>")
+vim.keymap.set("n", "L","<cmd>BufferLineCycleNext<CR>")
+vim.keymap.set("n", "bd","<cmd>BufferLineSortByDirectory<CR>", {silent = true})
+vim.keymap.set("n", "be","<cmd>BufferLineSortByExtension<CR>", {silent = true})
+vim.keymap.set("n", "bp","<cmd>BufferLinePick<CR>", {silent = true})
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")

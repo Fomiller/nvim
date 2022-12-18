@@ -34,7 +34,7 @@ return require('packer').startup(function(use)
 		  require("better_escape").setup()
 	  end,
   }
-
+  use {'ojroques/nvim-bufdel'}
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
   use('nvim-treesitter/playground')
   use('theprimeagen/harpoon')
