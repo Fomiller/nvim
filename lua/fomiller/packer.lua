@@ -19,6 +19,11 @@ return require('packer').startup(function(use)
 	 --  end
   -- })
 
+  use {
+      'nvim-tree/nvim-tree.lua',
+      tag = 'nightly' -- optional, updated every week. (see issue #1193)
+  }
+
   use({
 	  'folke/tokyonight.nvim',
 	  as = 'tokyonight',

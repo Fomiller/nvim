@@ -1,7 +1,7 @@
 utils = require('fomiller.functions.utils')
 -- commands = require('fomiller.functions.commands')
 
-vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>")
 
 vim.keymap.set("n", "<leader>w", "<cmd>w!<CR>")
 vim.keymap.set("n", "<leader>q", "<cmd>lua utils.Smart_quit()<CR>")
