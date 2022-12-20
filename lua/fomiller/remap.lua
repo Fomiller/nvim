@@ -8,11 +8,11 @@ vim.keymap.set("n", "<leader>q", "<cmd>lua utils.Smart_quit()<CR>")
 vim.keymap.set("n", "<leader>c", "<cmd>BufDel<CR>")
 
 -- bufferline mappings
-vim.keymap.set("n", "H","<cmd>BufferLineCyclePrev<CR>")
-vim.keymap.set("n", "L","<cmd>BufferLineCycleNext<CR>")
-vim.keymap.set("n", "bd","<cmd>BufferLineSortByDirectory<CR>", {silent = true})
-vim.keymap.set("n", "be","<cmd>BufferLineSortByExtension<CR>", {silent = true})
-vim.keymap.set("n", "bp","<cmd>BufferLinePick<CR>", {silent = true})
+vim.keymap.set("n", "H", "<cmd>BufferLineCyclePrev<CR>")
+vim.keymap.set("n", "L", "<cmd>BufferLineCycleNext<CR>")
+vim.keymap.set("n", "bd", "<cmd>BufferLineSortByDirectory<CR>", { silent = true })
+vim.keymap.set("n", "be", "<cmd>BufferLineSortByExtension<CR>", { silent = true })
+vim.keymap.set("n", "bp", "<cmd>BufferLinePick<CR>", { silent = true })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -62,3 +62,9 @@ vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>")
 
 vim.keymap.set("n", "<leader>/", "<Plug>(comment_toggle_linewise_current)")
 vim.keymap.set("v", "<leader>/", "<Plug>(comment_toggle_linewise_visual)")
+
+-- fugitive
+vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
+vim.keymap.set("n", "<leader>ga", ":G add ")
+vim.keymap.set("n", "<leader>gc", ":G commit -m '")
+vim.keymap.set("n", "<leader>gp", ":G push")
