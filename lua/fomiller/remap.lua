@@ -1,5 +1,5 @@
 utils = require('fomiller.functions.utils')
--- commands = require('fomiller.functions.commands')
+-- commands = require('fomiller.functions.commands')w
 
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>")
 
@@ -68,3 +68,12 @@ vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
 vim.keymap.set("n", "<leader>ga", ":G add ")
 vim.keymap.set("n", "<leader>gc", ":G commit -m '")
 vim.keymap.set("n", "<leader>gp", ":G push")
+
+-- buffers
+vim.keymap.set("n", "<leader>bb", "<cmd>BufferLineCyclePrev<cr>")
+vim.keymap.set("n", "<leader>bn", "<cmd>BufferLineCycleNext<cr>")
+vim.keymap.set("n", "<leader>bh", "<cmd>BufferLineCloseLeft<cr>")
+vim.keymap.set("n", "<leader>bh", "<cmd>BufferLineCloseRight<cr>")
+vim.keymap.set("n", "<leader>bD", "<cmd>BufferLineSortByDirectory<cr>")
+vim.keymap.set("n", "<leader>bE", "<cmd>BufferLineSortByExtension<cr>")
+vim.keymap.set("n", "<leader>bE", "<cmd>BufferLineSortByExtension<cr>")
