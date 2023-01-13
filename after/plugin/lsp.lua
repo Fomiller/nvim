@@ -12,6 +12,9 @@ lsp.nvim_workspace({
 
 lsp.setup()
 
+-- set filetypes
+vim.cmd([[autocmd BufRead, BufNewFile JenkinsFile set filetype=groovy]])
+
 -- vim.cmd([[silent! autocmd! filetypedetect BufRead,BufNewFile *.tf]])
 -- vim.cmd([[autocmd BufRead,BufNewFile *.hcl set filetype=hcl]])
 -- vim.cmd([[autocmd BufRead,BufNewFile .terraformrc,terraform.rc set filetype=hcl]])
