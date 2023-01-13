@@ -1,8 +1,8 @@
-vim.opt.termguicolors = true
-
 -- :help bufferline-styling
+vim.opt.termguicolors = true
 require("bufferline").setup {
     options = {
+        mode = "buffers",
         diagnostics = "nvim_lsp",
         diagnostics_update_in_insert = false,
         seperator_style = "thin", -- slant, padded_slant, thick, thin

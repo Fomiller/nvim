@@ -107,7 +107,11 @@ return require('packer').startup(function(use)
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
 
-    use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
+    use {
+        'akinsho/bufferline.nvim',
+        tag = "v3.*",
+        requires = 'nvim-tree/nvim-web-devicons',
+    }
 
     -- Lua
     use {
