@@ -1,9 +1,28 @@
-utils = require("fomiller.functions.utils")
+vim.opt.termguicolors = true
 
-local M = {}
-
-require("bufferline").setup({
+-- :help bufferline-styling
+require("bufferline").setup {
     options = {
+        diagnostics = "nvim_lsp",
+        diagnostics_update_in_insert = false,
+        seperator_style = "thin", -- slant, padded_slant, thick, thin
+        show_buffer_close_icons = false,
+        indicator = {
+            style = 'underline'
+        },
+        hover = {
+            enabled = true,
+            delay = 200,
+            reveal = { 'close' }
+        },
+        highlights = {
+            background = {
+                italic = true,
+            },
+            buffer_selected = {
+                bold = true,
+            },
+        },
         offsets = {
             {
                 filetype = "undotree",
@@ -34,7 +53,6 @@ require("bufferline").setup({
                 highlight = "PanelHeading",
                 padding = 1,
             },
-        }
+        },
     }
-})
-
+}
