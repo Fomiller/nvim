@@ -10,8 +10,26 @@ lsp.nvim_workspace({
     }
 })
 
-lsp.setup()
+lsp.ensure_installed({
+    'tsserver',
+    'gopls',
+    'golangci-lint-langserver',
+    'eslint',
+    'sumneko_lua',
+    'rust_analyzer',
+    'jedi_language_server',
+    'yamlls',
+    'terraformls',
+    'tflint',
+    'bashls',
+    'dockerls',
+    'html',
+    'eslint',
+    'jsonls',
+    'awk_ls'
+})
 
+lsp.setup()
 -- set filetypes
 vim.cmd([[autocmd BufRead, BufNewFile JenkinsFile set filetype=groovy]])
 
