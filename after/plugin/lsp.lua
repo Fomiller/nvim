@@ -13,9 +13,7 @@ lsp.nvim_workspace({
 lsp.ensure_installed({
     'tsserver',
     'gopls',
-    'golangci-lint-langserver',
     'eslint',
-    'sumneko_lua',
     'rust_analyzer',
     'jedi_language_server',
     'yamlls',
@@ -32,6 +30,7 @@ lsp.ensure_installed({
 lsp.setup()
 -- set filetypes
 vim.cmd([[autocmd BufRead, BufNewFile JenkinsFile set filetype=groovy]])
+-- vim.cmd([[autocmd BufRead, BufNewFile justfile set filetype=make]])
 
 -- vim.cmd([[silent! autocmd! filetypedetect BufRead,BufNewFile *.tf]])
 -- vim.cmd([[autocmd BufRead,BufNewFile *.hcl set filetype=hcl]])

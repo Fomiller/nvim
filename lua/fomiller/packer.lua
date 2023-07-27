@@ -125,4 +125,7 @@ return require('packer').startup(function(use)
             }
         end
     }
+    use {
+        'NoahTheDuke/vim-just'
+    }
 end)
