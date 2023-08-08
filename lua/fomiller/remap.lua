@@ -1,10 +1,10 @@
-utils = require('fomiller.functions.utils')
+Utils = require('fomiller.functions.utils')
 -- commands = require('fomiller.functions.commands')w
 
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>")
 
 vim.keymap.set("n", "<leader>w", "<cmd>w!<CR>")
-vim.keymap.set("n", "<leader>q", "<cmd>lua utils.Smart_quit()<CR>")
+vim.keymap.set("n", "<leader>q", "<cmd>lua Utils.Smart_quit()<CR>")
 vim.keymap.set("n", "<leader>c", "<cmd>BufDel<CR>")
 
 -- bufferline mappings

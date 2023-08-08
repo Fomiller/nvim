@@ -15,6 +15,7 @@ require("nvim-tree").setup({
             list = {
                 -- remove a default mapping for cd
                 { key = "<C-e>", action = "" },
+                { key = "<C-t>", action = "" },
 
                 -- -- add multiple normal mode mappings for edit
                 -- { key = { "<CR>", "o" }, action = "edit", mode = "n" },
