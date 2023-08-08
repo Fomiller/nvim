@@ -10,7 +10,19 @@ vim.opt.termguicolors = true
 -- OR setup with some options
 require("nvim-tree").setup({
     view = {
-        adaptive_size = false
+        adaptive_size = false,
+        mappings = {
+            list = {
+                -- remove a default mapping for cd
+                { key = "<C-e>", action = "" },
+
+                -- -- add multiple normal mode mappings for edit
+                -- { key = { "<CR>", "o" }, action = "edit", mode = "n" },
+                --
+                -- -- custom action
+                -- { key = "p", action = "print_the_node_path", action_cb = print_node_path },
+            }
+        }
     },
     filters = {
         dotfiles = false,
