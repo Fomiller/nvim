@@ -4,12 +4,41 @@ lsp.nvim_workspace({
     settings = {
         Lua = {
             diagnostics = {
-                globals = {'vim'}
+                globals = { 'vim' }
             }
         }
     }
 })
+
+lsp.ensure_installed({
+    'tsserver',
+    'gopls',
+    'eslint',
+    'rust_analyzer',
+    'jedi_language_server',
+    'yamlls',
+    'terraformls',
+    'tflint',
+    'bashls',
+    'dockerls',
+    'html',
+    'eslint',
+    'jsonls',
+    'awk_ls'
+})
+
 lsp.setup()
+-- set filetypes
+vim.cmd([[autocmd BufRead, BufNewFile JenkinsFile set filetype=groovy]])
+-- vim.cmd([[autocmd BufRead, BufNewFile justfile set filetype=make]])
+
+-- vim.cmd([[silent! autocmd! filetypedetect BufRead,BufNewFile *.tf]])
+-- vim.cmd([[autocmd BufRead,BufNewFile *.hcl set filetype=hcl]])
+-- vim.cmd([[autocmd BufRead,BufNewFile .terraformrc,terraform.rc set filetype=hcl]])
+-- vim.cmd([[autocmd BufRead,BufNewFile *.tf,*.tfvars set filetype=terraform]])
+-- vim.cmd([[autocmd BufRead,BufNewFile *.tfstate,*.tfstate.backup set filetype=json]])
+-- vim.cmd([[let g:terraform_fmt_on_save=1]])
+-- vim.cmd([[let g:terraform_align=1]])
 
 -- THEPRIMEAGENS LSP SETUP
 
