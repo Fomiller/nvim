@@ -1,6 +1,6 @@
 require('rose-pine').setup({})
 
-function SetColors(color)
+function ColorMyPencils(color)
     color = color or "rose-pine"
     vim.cmd.colorscheme(color)
 
@@ -10,4 +10,4 @@ function SetColors(color)
 
 end
 
-SetColors("tokyonight")
+ColorMyPencils()
