@@ -1,6 +1,7 @@
 Utils = require('config.functions.utils')
 -- commands = require('fomiller.functions.commands')w
 
+
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>")
 
 vim.keymap.set("n", "<leader>w", "<cmd>w!<CR>")
@@ -89,3 +90,13 @@ vim.keymap.set("n", "<C-t>", function() ui.nav_file(1) end)
 vim.keymap.set("n", "<C-g>", function() ui.nav_file(2) end)
 vim.keymap.set("n", "<C-b>", function() ui.nav_file(3) end)
 vim.keymap.set("n", "<C-y>", function() ui.nav_file(4) end)
+ 
+-- telescope
+local telescope = require('telescope.builtin')
+vim.keymap.set('n', '<leader>sf', telescope.find_files, {})
+vim.keymap.set('n', '<leader>st', telescope.live_grep, {})
+vim.keymap.set('n', '<leader>sb', telescope.buffers, {})
+vim.keymap.set('n', '<C-p>', telescope.git_files, {})
+vim.keymap.set('n', '<leader>ps', function()
+	telescope.grep_string({search = vim.fn.input("Grep > ") })
+end)

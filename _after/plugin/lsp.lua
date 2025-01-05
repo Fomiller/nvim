@@ -11,7 +11,6 @@ lsp.nvim_workspace({
 })
 
 lsp.ensure_installed({
-    'tsserver',
     'gopls',
     'eslint',
     'rust_analyzer',
