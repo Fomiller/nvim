@@ -1,49 +1,72 @@
-
-return  { 
+return  {
     'VonHeikemen/lsp-zero.nvim',
     dependencies = {
-            -- LSP Support
-            { 'neovim/nvim-lspconfig' },
-            { 'williamboman/mason.nvim' },
-            { 'williamboman/mason-lspconfig.nvim' },
-            -- Autocompletion
-            { 'hrsh7th/nvim-cmp' },
-            { 'hrsh7th/cmp-buffer' },
-            { 'hrsh7th/cmp-path' },
-            { 'saadparwaiz1/cmp_luasnip' },
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { 'hrsh7th/cmp-nvim-lua' },
-            -- Snippets
-            { 'L3MON4D3/LuaSnip' },
-            { 'rafamadriz/friendly-snippets' },
+        -- LSP Support
+        { 'neovim/nvim-lspconfig' },
+        { 'williamboman/mason.nvim' },
+        { 'williamboman/mason-lspconfig.nvim' },
+        -- Autocompletion
+        { 'saadparwaiz1/cmp_luasnip' },
+        { 'hrsh7th/cmp-buffer' },
+        { 'hrsh7th/cmp-path' },
+        { 'hrsh7th/cmp-nvim-lsp' },
+        { 'hrsh7th/cmp-nvim-lua' },
+        { 'hrsh7th/nvim-cmp' },
+        -- Snippets
+        { 'L3MON4D3/LuaSnip' },
+        { 'rafamadriz/friendly-snippets' },
+        -- Format
+        { 'stevearc/conform.nvim' },
     },
-    -- config = function()
+    config = function()
+        -- LSP ZERO CONFIG.
+        -- Add cmp_nvim_lsp capabilities settings to lspconfig
+        -- This should be executed before you configure any language server
+        local lspconfig_defaults = require('lspconfig').util.default_config
+        lspconfig_defaults.capabilities = vim.tbl_deep_extend(
+        'force',
+        lspconfig_defaults.capabilities,
+        require('cmp_nvim_lsp').default_capabilities()
+        )
+
+        vim.diagnostic.config({
+            -- update_in_insert = true,
+            float = {
+                focusable = false,
+                style = "minimal",
+                border = "rounded",
+                source = true,
+                header = "",
+                prefix = "",
+            },
+        })
+    end
+
     --     local lsp = require('lsp-zero')
     --     lsp.preset('recommended')
     --     -- lsp.nvim_workspace({
-    --     --     settings = {
-    --     --         Lua = {
-    --     --             diagnostics = {
-    --     --                 globals = { 'vim' }
-    --     --             }
-    --     --         }
-    --     --     }
-    --     -- })
-    --
-    --     lsp.ensure_installed({
-    --         'gopls',
-    --         'rust_analyzer',
-    --         'yamlls',
-    --         'terraformls',
-    --         'tflint',
-    --         'bashls',
-    --         'dockerls',
-    --         'html',
-    --         'jsonls',
-    --     })
-    --     lsp.setup()
-    -- end
-}
+        --     --     settings = {
+            --     --         Lua = {
+                --     --             diagnostics = {
+                    --     --                 globals = { 'vim' }
+                    --     --             }
+                    --     --         }
+                    --     --     }
+                    --     -- })
+                    --
+                    --     lsp.ensure_installed({
+                        --         'gopls',
+                        --         'rust_analyzer',
+                        --         'yamlls',
+                        --         'terraformls',
+                        --         'tflint',
+                        --         'bashls',
+                        --         'dockerls',
+                        --         'html',
+                        --         'jsonls',
+                        --     })
+                        --     lsp.setup()
+                    }
 
 -- set filetypes
 -- vim.cmd([[autocmd BufRead, BufNewFile JenkinsFile set filetype=groovy]])

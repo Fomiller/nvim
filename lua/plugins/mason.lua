@@ -18,6 +18,12 @@ return {
                 function(server_name)
                     require('lspconfig')[server_name].setup({})
                 end,
+            },
+            ensure_installed = {
+                "lua_ls",
+                "rust_analyzer",
+                "gopls",
+                "ruff"
             }
         }
     }

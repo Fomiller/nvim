@@ -1,1 +1,1 @@
-return { 'folke/lsp-colors.nvim' }
+return {'folke/lsp-colors.nvim'}

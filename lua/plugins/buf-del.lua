@@ -1,1 +1,1 @@
-return { 'ojroques/nvim-bufdel' }
+return { 'ojroques/nvim-bufdel', opts = {}}
