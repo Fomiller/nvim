@@ -73,6 +73,7 @@ vim.keymap.set("n", "<C-b>", function() ui.nav_file(3) end)
 vim.keymap.set("n", "<C-y>", function() ui.nav_file(4) end)
 
 -- telescope
+require('telescope').load_extension("todo-comments")
 local telescope = require('telescope.builtin')
 vim.keymap.set('n', '<leader>sf', telescope.find_files, {})
 vim.keymap.set('n', '<leader>st', telescope.live_grep, {})
@@ -80,6 +81,12 @@ vim.keymap.set('n', '<leader>sb', telescope.buffers, {})
 vim.keymap.set('n', '<leader>sg', telescope.git_files, {})
 vim.keymap.set('n', '<leader>ss', function() local word = vim.fn.expand("<cword>") telescope.grep_string({ search = word }) end)
 vim.keymap.set('n', '<leader>SS', function() local word = vim.fn.expand("<cWORD>") telescope.grep_string({ search = word }) end)
+vim.keymap.set('n', '<leader>sh', telescope.help_tags, {}) -- nvim help docs
+vim.keymap.set('n', '<leader>sh', telescope.help_tags, {}) -- nvim help docs
+
+-- todo-comments
+vim.keymap.set("n", "]t", function() require("todo-comments").jump_next() end, { desc = "Next todo comment" })
+vim.keymap.set("n", "[t", function() require("todo-comments").jump_prev() end, { desc = "Previous todo comment" })
 
 -- undotree
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)

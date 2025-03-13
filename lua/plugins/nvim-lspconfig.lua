@@ -17,12 +17,4 @@ return {
       lspconfig[server].setup(config)
     end
   end
-
- -- -- example calling setup directly for each LSP
- --  config = function()
- --    local capabilities = require('blink.cmp').get_lsp_capabilities()
- --    local lspconfig = require('lspconfig')
- --
- --    lspconfig['lua-ls'].setup({ capabilities = capabilities })
- --  end
 }
