@@ -12,6 +12,7 @@ return {
                     return { "isort", "black" }
                 end
             end,
+            nix = {"nixfmt"}
         }
     }
 }
