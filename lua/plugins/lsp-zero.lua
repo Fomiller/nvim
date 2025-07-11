@@ -1,35 +1,53 @@
-local lsp = require('lsp-zero')
-lsp.preset('recommended')
-lsp.nvim_workspace({
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim' }
-            }
-        }
-    }
-})
+return  {
+    'VonHeikemen/lsp-zero.nvim',
+    dependencies = {
+        -- LSP Support
+        { 'neovim/nvim-lspconfig' },
+        { 'williamboman/mason.nvim' },
+        { 'williamboman/mason-lspconfig.nvim' },
+        -- Autocompletion
+        { 'saadparwaiz1/cmp_luasnip' },
+        { 'hrsh7th/cmp-buffer' },
+        { 'hrsh7th/cmp-path' },
+        { 'hrsh7th/cmp-nvim-lsp' },
+        { 'hrsh7th/cmp-nvim-lua' },
+        { 'hrsh7th/nvim-cmp' },
+        -- Snippets
+        { 'L3MON4D3/LuaSnip' },
+        { 'rafamadriz/friendly-snippets' },
+        -- Format
+        { 'stevearc/conform.nvim' },
+    },
+    opts = {}
 
-lsp.ensure_installed({
-    'tsserver',
-    'gopls',
-    'eslint',
-    'rust_analyzer',
-    'jedi_language_server',
-    'yamlls',
-    'terraformls',
-    'tflint',
-    'bashls',
-    'dockerls',
-    'html',
-    'eslint',
-    'jsonls',
-    'awk_ls'
-})
+    --     local lsp = require('lsp-zero')
+    --     lsp.preset('recommended')
+    --     -- lsp.nvim_workspace({
+        --     --     settings = {
+            --     --         Lua = {
+                --     --             diagnostics = {
+                    --     --                 globals = { 'vim' }
+                    --     --             }
+                    --     --         }
+                    --     --     }
+                    --     -- })
+                    --
+                    --     lsp.ensure_installed({
+                        --         'gopls',
+                        --         'rust_analyzer',
+                        --         'yamlls',
+                        --         'terraformls',
+                        --         'tflint',
+                        --         'bashls',
+                        --         'dockerls',
+                        --         'html',
+                        --         'jsonls',
+                        --     })
+                        --     lsp.setup()
+                    }
 
-lsp.setup()
 -- set filetypes
-vim.cmd([[autocmd BufRead, BufNewFile JenkinsFile set filetype=groovy]])
+-- vim.cmd([[autocmd BufRead, BufNewFile JenkinsFile set filetype=groovy]])
 -- vim.cmd([[autocmd BufRead, BufNewFile justfile set filetype=make]])
 
 -- vim.cmd([[silent! autocmd! filetypedetect BufRead,BufNewFile *.tf]])
@@ -116,3 +134,4 @@ vim.cmd([[autocmd BufRead, BufNewFile JenkinsFile set filetype=groovy]])
 -- vim.diagnostic.config({
 --     virtual_text = true,
 -- })
+
