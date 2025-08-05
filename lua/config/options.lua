@@ -22,3 +22,6 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 vim.g.mapleader = " "
+vim.g.go_addtags_transform = 'camelcase'
+vim.g.go_def_mapping_enabled = 0
+vim.g.go_doc_popup_window = 1
