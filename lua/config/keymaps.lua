@@ -1,6 +1,8 @@
 Utils = require('config.functions.utils')
 -- commands = require('fomiller.functions.commands')w
 
+-- go to definition
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { noremap = true, silent = true })
 -- toggle nvim tree
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>")
 -- write file
@@ -74,6 +76,7 @@ vim.keymap.set("n", "<C-y>", function() ui.nav_file(4) end)
 
 -- telescope
 require('telescope').load_extension("todo-comments")
+-- require('telescope').load_extension("fzf")
 local telescope = require('telescope.builtin')
 vim.keymap.set('n', '<leader>sf', telescope.find_files, {})
 vim.keymap.set('n', '<leader>st', telescope.live_grep, {})
