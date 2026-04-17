@@ -12,7 +12,16 @@ return {
                     return { "isort", "black" }
                 end
             end,
-            nix = {"nixfmt"}
+            nix = {"nixfmt"},
+            terraform = { "terraform_fmt" },
+            hcl = { "terraform_fmt" }
+        },
+        formatters = {
+            terraform_fmt = {
+                command = "terraform",
+                args = {"fmt", "-"},
+                stdin = true
+            }
         }
     }
 }
