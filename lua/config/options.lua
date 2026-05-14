@@ -15,13 +15,12 @@ vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
-vim.opt.termguicolors = true
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
-vim.g.mapleader = " "
+-- mapleader and termguicolors are set in config/lazy.lua (must be set before lazy.nvim loads)
 vim.g.go_addtags_transform = 'camelcase'
 vim.g.go_def_mapping_enabled = 0
 vim.g.go_doc_popup_window = 1

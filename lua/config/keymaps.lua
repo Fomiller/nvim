@@ -1,14 +1,11 @@
-Utils = require('config.functions.utils')
--- commands = require('fomiller.functions.commands')w
+local Utils = require('config.functions.utils')
 
--- go to definition
-vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { noremap = true, silent = true })
 -- toggle nvim tree
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>")
 -- write file
 vim.keymap.set("n", "<leader>w", "<cmd>w!<CR>")
 -- quit and prompt "are you sure" if file has not been saved
-vim.keymap.set("n", "<leader>q", "<cmd>lua Utils.Smart_quit()<CR>")
+vim.keymap.set("n", "<leader>q", Utils.Smart_quit)
 -- delete buffer
 vim.keymap.set("n", "<leader>c", "<cmd>BufDel<CR>")
 -- move line down in visual mode
@@ -49,7 +46,7 @@ vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 -- search and replace word under cursor
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>rs", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- automatically set file to executable
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
@@ -85,7 +82,6 @@ vim.keymap.set('n', '<leader>sg', telescope.git_files, {})
 vim.keymap.set('n', '<leader>ss', function() local word = vim.fn.expand("<cword>") telescope.grep_string({ search = word }) end)
 vim.keymap.set('n', '<leader>SS', function() local word = vim.fn.expand("<cWORD>") telescope.grep_string({ search = word }) end)
 vim.keymap.set('n', '<leader>sh', telescope.help_tags, {}) -- nvim help docs
-vim.keymap.set('n', '<leader>sh', telescope.help_tags, {}) -- nvim help docs
 
 -- todo-comments
 vim.keymap.set("n", "]t", function() require("todo-comments").jump_next() end, { desc = "Next todo comment" })
@@ -95,9 +91,8 @@ vim.keymap.set("n", "[t", function() require("todo-comments").jump_prev() end, {
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 
 -- windows navigation (dont really use anymore, but keeping anyways)
+-- <C-j>/<C-k> intentionally NOT mapped here — they're used for quickfix nav above.
 vim.keymap.set("n", "<C-h>", "<C-w>h")
-vim.keymap.set("n", "<C-j>", "<C-w>j")
-vim.keymap.set("n", "<C-k>", "<C-w>k")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
 vim.keymap.set("n", "<C-Up>", ":resize -2<CR>")
 vim.keymap.set("n", "<C-Down>", ":resize +2<CR>")
