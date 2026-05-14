@@ -20,6 +20,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
+vim.o.winborder = "rounded"
 -- mapleader and termguicolors are set in config/lazy.lua (must be set before lazy.nvim loads)
 vim.g.go_addtags_transform = "camelcase"
 vim.g.go_def_mapping_enabled = 0

@@ -90,6 +90,10 @@ vim.keymap.set("n", "[t", function() require("todo-comments").jump_prev() end, {
 -- undotree
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 
+-- diagnostics navigation
+vim.keymap.set("n", "]d", function() vim.diagnostic.jump({ count =  1, float = true }) end, { desc = "Next diagnostic" })
+vim.keymap.set("n", "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end, { desc = "Prev diagnostic" })
+
 -- windows navigation (dont really use anymore, but keeping anyways)
 -- <C-j>/<C-k> intentionally NOT mapped here — they're used for quickfix nav above.
 vim.keymap.set("n", "<C-h>", "<C-w>h")

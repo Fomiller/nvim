@@ -22,19 +22,7 @@ autocmd("FileType", {
     end
 })
 
--- setup keys bindings when lsp attaches
-autocmd('LspAttach', {
-    callback = function(e)
-        local opts = { buffer = e.buf }
-        vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-        vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
-        vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-        vim.keymap.set("n", "<leader>rr", vim.lsp.buf.references, opts)
-        vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-        vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
-    end
-})
+-- LspAttach keymaps live in lua/plugins/nvim-lspconfig.lua so all LSP wiring is in one place.
 
 -- Prevent automatic comment continuation when pressing ["O", "o"].
 -- Uses FileType + opt_local so it wins against built-in ftplugins that re-add "o".
