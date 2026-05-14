@@ -25,13 +25,7 @@ return {
             callback = function(e)
                 local opts = { buffer = e.buf }
                 vim.keymap.set("n", "gd",         vim.lsp.buf.definition,     opts)
-                vim.keymap.set("n", "K", function()
-                    vim.lsp.buf.hover({
-                        max_width  = 80,
-                        max_height = 30,
-                        focusable  = true,
-                    })
-                end, opts)
+                vim.keymap.set("n", "K",          vim.lsp.buf.hover,          opts)
                 vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float,  opts)
                 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action,    opts)
                 vim.keymap.set("n", "<leader>rr", vim.lsp.buf.references,     opts)
