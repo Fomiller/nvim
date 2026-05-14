@@ -1,44 +1,71 @@
 return {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
     lazy = false,
-    build = ":TSUpdate",  -- Ensures parsers are updated after installation
-    event = { "BufReadPost", "BufNewFile" },  -- Load Treesitter when opening a file
+    build = ":TSUpdate",
     config = function()
-        require("nvim-treesitter.configs").setup({
-            -- A list of parser names, or "all"
-            ensure_installed = {
-                "bash",
-                "c",
-                "dockerfile",
-                "go",
-                "hcl",
-                "javascript",
-                "jsdoc",
-                "json",
-                "lua",
-                "python",
-                "rust",
-                "terraform",
-                "typescript",
-                "vimdoc",
-                "yaml",
-            },
-            -- Install parsers synchronously (only applied to `ensure_installed`)
-            sync_install = false,
-            -- Automatically install missing parsers when entering buffer
-            highlight = { enable = true, additional_vim_regex_highlighting = false },
-            indent = { enable = true },
-            incremental_selection = { enable = true },
-            auto_install = true
+        local parsers = {
+            "bash",
+            "c",
+            "dockerfile",
+            "go",
+            "hcl",
+            "helm",
+            "javascript",
+            "jsdoc",
+            "json",
+            "lua",
+            "markdown",
+            "markdown_inline",
+            "python",
+            "rust",
+            "terraform",
+            "typescript",
+            "vimdoc",
+            "yaml",
+        }
+
+        require("nvim-treesitter").install(parsers)
+
+        local filetypes = {
+            "bash",
+            "c",
+            "dockerfile",
+            "go",
+            "hcl",
+            "javascript",
+            "javascriptreact",
+            "json",
+            "lua",
+            "markdown",
+            "markdown_inline",
+            "python",
+            "rust",
+            "terraform",
+            "typescript",
+            "typescriptreact",
+            "vimdoc",
+            "yaml",
+            "helm",
+        }
+
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern = filetypes,
+            callback = function(args)
+                pcall(vim.treesitter.start, args.buf)
+                vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+            end,
         })
 
-        -- extra filetype setup
         vim.filetype.add({
             pattern = {
                 [".*%.tf"] = "terraform",
                 [".*%.tfvars"] = "terraform",
                 [".*%.hcl"] = "hcl",
+                [".*/templates/.*%.ya?ml"] = "helm",
+                [".*/templates/.*%.tpl"] = "helm",
+                ["helmfile.*%.ya?ml"] = "helm",
             },
         })
-    end
+    end,
 }
