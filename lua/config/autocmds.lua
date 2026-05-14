@@ -36,10 +36,11 @@ autocmd('LspAttach', {
     end
 })
 
--- Prevent automatic comment continuation when pressing ["O", "o"]
-vim.api.nvim_create_autocmd("BufEnter", {
+-- Prevent automatic comment continuation when pressing ["O", "o"].
+-- Uses FileType + opt_local so it wins against built-in ftplugins that re-add "o".
+vim.api.nvim_create_autocmd("FileType", {
     pattern = "*",
     callback = function()
-        vim.opt.formatoptions:remove({"o"})
+        vim.opt_local.formatoptions:remove("o")
     end,
 })
