@@ -6,6 +6,14 @@ return {
         "rcarriga/nvim-notify",
     },
     opts = {
+        cmdline = {
+            -- Use vanilla nvim cmdline. Noice's cmdline view closes other windows
+            -- (like fugitive's :G status) when activated, so we bypass it entirely.
+            enabled = false,
+        },
+        messages = {
+            enabled = false, -- let nvim handle :echo / :G status / etc. traditionally
+        },
         lsp = {
             -- Route LSP markdown (hover, signature help) through noice.
             override = {
@@ -21,10 +29,9 @@ return {
             },
         },
         presets = {
-            bottom_search       = true, -- search prompt at bottom
-            command_palette     = true, -- :command + search in popup
+            bottom_search         = true, -- search prompt at bottom
             long_message_to_split = true, -- long messages go to split, not floating popup
-            lsp_doc_border      = true, -- border around hover docs
+            lsp_doc_border        = true, -- border around hover docs
         },
         -- Filter noisy messages out of the cmdline (tweak as needed).
         routes = {

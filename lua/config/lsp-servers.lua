@@ -54,6 +54,22 @@ return {
 
     ruff          = {},
     helm_ls       = {},
-    terraformls   = {},
+    terraformls   = {
+        -- terraform-ls logs every JSON-RPC request/response (incl. full
+        -- semantic-token payloads) to stderr, which nvim captures into
+        -- lsp.log at ERROR level regardless of vim.lsp.log level. That can
+        -- balloon lsp.log to multiple GB. Discard its stderr at the source.
+        cmd = { "sh", "-c", "exec terraform-ls serve 2>/dev/null" },
+        -- This repo is a ~9GB terragrunt monorepo: each .terragrunt-cache
+        -- holds a ~700MB .terraform provider-schema dir plus copied source.
+        -- Without this, terraform-ls indexes the whole tree on attach and
+        -- freezes nvim. Skip the generated cache/stack dirs (they're not
+        -- hand-edited) so it only indexes real source modules.
+        init_options = {
+            indexing = {
+                ignoreDirectoryNames = { ".terragrunt-cache", ".terragrunt-stack" },
+            },
+        },
+    },
     tflint        = {},
 }
