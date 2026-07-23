@@ -24,16 +24,19 @@ if s:base !=# '' && !empty(globpath(&runtimepath, 'syntax/' . s:base . '.vim'))
   unlet! b:current_syntax
 endif
 
-" Custom-delimiter Jinja overlay.
-syntax region jinjaTmplVar   matchgroup=jinjaTmplDelim start=/@{/ end=/}@/ containedin=ALL keepend
-syntax region jinjaTmplBlock matchgroup=jinjaTmplDelim start=/@%/ end=/%@/ containedin=ALL keepend contains=jinjaTmplKeyword
+" makejinja custom-delimiter overlay (see golden-files-aviation mkRepository.nix):
+"   @{ ... }@  expression    @% ... %@  statement    @# ... #@  comment
+syntax region jinjaTmplComment matchgroup=jinjaTmplDelim start=/@#/ end=/#@/ containedin=ALL keepend
+syntax region jinjaTmplVar     matchgroup=jinjaTmplDelim start=/@{/ end=/}@/ containedin=ALL keepend
+syntax region jinjaTmplBlock   matchgroup=jinjaTmplDelim start=/@%/ end=/%@/ containedin=ALL keepend contains=jinjaTmplKeyword
 syntax keyword jinjaTmplKeyword contained
       \ if elif else endif for endfor in is not and or
       \ set block endblock macro endmacro call endcall filter endfilter
       \ include import from as with endwith without context
 
-highlight default link jinjaTmplDelim   PreProc
+highlight default link jinjaTmplDelim    PreProc
 highlight default link jinjaTmplKeyword  Statement
 highlight default link jinjaTmplVar      Identifier
+highlight default link jinjaTmplComment  Comment
 
 let b:current_syntax = 'jinjatmpl'
