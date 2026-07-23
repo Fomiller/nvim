@@ -1,8 +1,13 @@
 -- Single source of truth for LSP servers.
 --
--- To add a server:
---   1) Append a `<server_name> = { ...opts... }` entry below.
---   2) Restart nvim. mason-lspconfig will install it, nvim-lspconfig will enable it.
+-- Servers are auto-enabled by mason-lspconfig (automatic_enable = true in
+-- plugins/mason.lua), so `:MasonInstall <server>` + restart is enough to get a
+-- server running — no entry here is required just to enable one.
+--
+-- Add an entry here when you want either:
+--   * custom per-server settings, or
+--   * the server auto-installed on a fresh machine (ensure_installed is
+--     derived from this table's keys).
 --
 -- Per-server settings go in the value table.
 -- An empty table `{}` means "use defaults".
@@ -54,6 +59,11 @@ return {
 
     ruff          = {},
     helm_ls       = {},
+    -- jinja-lsp provides highlighting (via semantic tokens), completion,
+    -- hover, and diagnostics for jinja templates. It only attaches to the
+    -- `jinja` filetype, which isn't auto-detected for .j2/.jinja2 — see the
+    -- vim.filetype.add extension block in plugins/treesitter.lua.
+    jinja_lsp     = {},
     terraformls   = {
         -- terraform-ls logs every JSON-RPC request/response (incl. full
         -- semantic-token payloads) to stderr, which nvim captures into

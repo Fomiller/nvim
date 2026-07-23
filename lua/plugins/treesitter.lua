@@ -51,6 +51,13 @@ return {
         -- FileType autocmd above attach to the right files (helm/terraform/hcl
         -- have non-trivial detection rules).
         vim.filetype.add({
+            -- `.jinja` is already detected by neovim's builtin filetype rules,
+            -- but `.j2`/`.jinja2` are not. jinja_lsp (see config/lsp-servers.lua)
+            -- only attaches to the `jinja` filetype, so map them here.
+            extension = {
+                j2     = "jinja",
+                jinja2 = "jinja",
+            },
             pattern = {
                 [".*%.tf"]                 = "terraform",
                 [".*%.tfvars"]             = "terraform",

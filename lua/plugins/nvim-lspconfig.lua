@@ -5,13 +5,18 @@ return {
         "williamboman/mason-lspconfig.nvim",
     },
     config = function()
-        local servers = require("config.lsp-servers")
+        -- blink.cmp completion capabilities for EVERY server, including ones
+        -- auto-enabled by mason-lspconfig that aren't listed in lsp-servers.lua.
+        -- vim.lsp.config merges this "*" default into each resolved server.
+        vim.lsp.config("*", {
+            capabilities = require("blink.cmp").get_lsp_capabilities(),
+        })
 
-        for name, cfg in pairs(servers) do
-            cfg.capabilities = require("blink.cmp").get_lsp_capabilities(cfg.capabilities)
+        -- Layer on per-server settings from lsp-servers.lua. Enabling itself is
+        -- handled by mason-lspconfig (automatic_enable = true in mason.lua).
+        for name, cfg in pairs(require("config.lsp-servers")) do
             vim.lsp.config[name] = cfg
         end
-        vim.lsp.enable(vim.tbl_keys(servers))
 
         -- Filetypes where inlay hints are ON by default.
         -- Add/remove freely. Toggle per-buffer at any time with <leader>ih.
