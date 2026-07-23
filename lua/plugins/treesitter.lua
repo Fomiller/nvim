@@ -16,6 +16,7 @@ return {
             "hcl",
             "helm",
             "javascript",
+            "jinja",
             "jsdoc",
             "json",
             "lua",
