@@ -52,14 +52,28 @@ return {
         -- FileType autocmd above attach to the right files (helm/terraform/hcl
         -- have non-trivial detection rules).
         vim.filetype.add({
-            -- `.jinja` is already detected by neovim's builtin filetype rules,
-            -- but `.j2`/`.jinja2` are not. jinja_lsp (see config/lsp-servers.lua)
-            -- only attaches to the `jinja` filetype, so map them here.
+            -- Plain `.jinja` is builtin-detected; `.j2`/`.jinja2` are not.
+            -- These use stock {{ }} / {% %} delimiters -> `jinja` (treesitter).
             extension = {
                 j2     = "jinja",
                 jinja2 = "jinja",
             },
             pattern = {
+                -- Flock golden-file templates named <base>.jinja (e.g.
+                -- account.hcl.jinja) use custom @{ }@ / @% %@ delimiters, which
+                -- neither treesitter nor jinja-lsp understand. Route them to the
+                -- `jinjatmpl` filetype (see syntax/jinjatmpl.vim), stashing the
+                -- base extension so it can load that language's classic syntax.
+                -- A plain `.jinja` (no inner extension) stays `jinja`.
+                [".*%.jinja"] = function(path)
+                    local base = path:match("%.(%w+)%.jinja$")
+                    if not base then
+                        return "jinja"
+                    end
+                    return "jinjatmpl", function(bufnr)
+                        vim.b[bufnr].jinja_base_ext = base
+                    end
+                end,
                 [".*%.tf"]                 = "terraform",
                 [".*%.tfvars"]             = "terraform",
                 [".*%.hcl"]                = "hcl",
